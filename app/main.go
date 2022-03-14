@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"timesavvy/app/controllers"
+	"go-back/app/controllers"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"

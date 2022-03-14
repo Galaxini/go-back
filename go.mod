@@ -1,4 +1,4 @@
-module timesavvy
+module go-back
 
 go 1.16
 

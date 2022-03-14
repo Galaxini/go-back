@@ -2,6 +2,7 @@ package services
 
 import (
 	"database/sql"
+	"go-back/app/models"
 
 	_ "github.com/go-sql-driver/mysql"
 	"golang.org/x/crypto/bcrypt"
@@ -16,7 +17,7 @@ func RegisterUser(name string, password string, email string) (string, error) {
 	if err != nil {
 		panic(err.Error())
 	}
-	queryString := "insert into users(name, password, email) values (?, ?, ?)"
+	queryString := "insert into users(name, password, email, token) values (?, ?, ?, ?)"
 
 	stmt, err := db.Prepare(queryString)
 
@@ -28,7 +29,9 @@ func RegisterUser(name string, password string, email string) (string, error) {
 
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), 14)
 
-	_, err = stmt.Exec(name, hashedPassword, email)
+	token := models.GenerateSecureToken()
+
+	_, err = stmt.Exec(name, hashedPassword, email, token)
 
 	if err != nil {
 		return "", err

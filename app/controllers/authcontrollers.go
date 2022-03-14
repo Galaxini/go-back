@@ -2,8 +2,8 @@ package controllers
 
 import (
 	"fmt"
+	"go-back/app/services"
 	"net/http"
-	"timesavvy/app/services"
 )
 
 func RegisterHandler(w http.ResponseWriter, req *http.Request) {
