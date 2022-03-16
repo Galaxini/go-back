@@ -92,16 +92,3 @@ func LoginUser(email string, password string) (string, error) {
 
 	return "Successfully logined", nil
 }
-
-// public function login($email, $password)
-// {
-//   try {
-//     $password = User::getHash($password);
-//     $user = User::where('email', $email)->where('password', $password)->first();
-//     $user->token = User::generateToken();
-//     $user->save();
-//     return $user;
-//   } catch(\Exception $e) {
-//     return false;
-//   }
-// }
