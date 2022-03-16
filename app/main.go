@@ -23,6 +23,11 @@ func main() {
 	router.Handle("/", http.FileServer(http.Dir("./views/")))
 	// creating endpoints
 	router.HandleFunc("/auth/register", controllers.RegisterHandler).Methods("POST")
+	router.HandleFunc("/auth/login", controllers.LoginHandler).Methods("POST")
+	router.HandleFunc("/item/addItems", controllers.AddItemHandler).Methods("POST")
+	router.HandleFunc("/item/getItems", controllers.GetItemsHandler).Methods("GET")
+	router.HandleFunc("/item/editItems", controllers.EditItemsHandler).Methods("POST")
+	router.HandleFunc("/item/deleteItems", controllers.DeleteItemsHandler).Methods("POST")
 	// router.HandleFunc("/posts", getPosts).Methods("GET")
 	// router.HandleFunc("/posts", createPost).Methods("POST")
 	// router.HandleFunc("/posts/{id}", getPost).Methods("GET")
@@ -30,7 +35,7 @@ func main() {
 	// router.HandleFunc("/posts/{id}", deletePost).Methods("DELETE")
 
 	// run our server on port 8000
-	http.ListenAndServe(":8000", router)
+	http.ListenAndServe(":8090", router)
 }
 
 // handle get req

@@ -30,3 +30,24 @@ func RegisterHandler(w http.ResponseWriter, req *http.Request) {
 		fmt.Fprintf(w, response)
 	}
 }
+
+func LoginHandler(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	// validation
+	if req.FormValue("password") == "" {
+		fmt.Fprintf(w, "Please enter a valid password.\r\n")
+		return
+	}
+	if req.FormValue("email") == "" {
+		fmt.Fprintf(w, "Please enter a valid email.\r\n")
+		return
+	}
+
+	response, err := services.LoginUser(req.FormValue("email"), req.FormValue("password"))
+
+	if err != nil {
+		fmt.Fprintf(w, err.Error())
+	} else {
+		fmt.Fprintf(w, response)
+	}
+}

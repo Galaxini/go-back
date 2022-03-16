@@ -6,9 +6,10 @@ import (
 )
 
 type User struct {
-	Name     string `json:"name"`
-	Email    string `json:"email"`
-	Password string `json:"password"`
+	Name            string `json:"name"`
+	Email           string `json:"email"`
+	AccountPassword string `json:"password"`
+	ID              int    `json:"id"`
 }
 
 func GenerateSecureToken() string {
